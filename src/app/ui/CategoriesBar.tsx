@@ -1,11 +1,5 @@
 import Link from 'next/link';
-import { idText } from 'typescript';
-
-type Category = {
-  id: number;
-  title: string;
-  slug: string;
-};
+import { Category } from '../lib/types';
 
 const categories: Category[] = [
   {
