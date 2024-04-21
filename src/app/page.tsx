@@ -16,9 +16,7 @@ export default async function Home() {
     <main className="flex min-h-screen justify-center items-center">
       <div className="h-screen container flex flex-wrap gap-8 pt-10 md:p-24 justify-center items-center ">
         {products.map((product) => (
-          <Link key={product.id} href={`/${product.slug}`}>
-            <CardProduct {...product} />
-          </Link>
+          <CardProduct key={product.id} {...product} />
         ))}
       </div>
     </main>

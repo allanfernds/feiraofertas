@@ -13,10 +13,10 @@ export type Product = {
   discountPrice: number;
   description: string;
   imageURL: string;
-  categoryID?: number;
+  categoryID: number;
   saleURL: string;
-  companyID?: number;
-  createdAt?: string;
-  updatedAt?: string;
-  expirationDate?: string;
+  companyID: number;
+  createdAt: string;
+  updatedAt: string;
+  expirationDate: string;
 };
