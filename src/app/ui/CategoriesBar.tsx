@@ -33,7 +33,7 @@ const CategoriesBar = () => {
   return (
     <ul
       className="menu menu-horizontal w-full md:justify-center 
-    items-center bg-custom-orange text-white text-md h-12 md:h-auto flex-nowrap"
+    items-center bg-custom-orange text-custom-grey font-medium  text-md h-12 md:h-auto flex-nowrap"
     >
       {/* MENU MOBILE============================================================== */}
       <div className="dropdown">
@@ -50,7 +50,7 @@ const CategoriesBar = () => {
         >
           {categories.map((category) => (
             <li
-              className="mx-2 text-center text-custom-grey-2"
+              className="mx-2 text-center text-custom-grey-2 "
               key={category.id}
             >
               <Link href={`/${category.slug}`}>{category.title}</Link>
@@ -59,11 +59,14 @@ const CategoriesBar = () => {
         </ul>
       </div>
       {/* MENU MOBILE============================================================== */}
-      <li>
+      <li className="hover:text-custom-white">
         <Link href={`/`}>Recentes</Link>
       </li>
       {categories.map((category) => (
-        <li className="hidden md:block  mx-4 text-center" key={category.id}>
+        <li
+          className="hidden md:block mx-4 text-center hover:text-custom-white"
+          key={category.id}
+        >
           <Link href={`/${category.slug}`}>{category.title}</Link>
         </li>
       ))}

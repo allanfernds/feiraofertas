@@ -15,6 +15,7 @@ export type Product = {
   imageURL: string;
   categoryID: number;
   saleURL: string;
+  installment: number;
   companyID: number;
   createdAt: string;
   updatedAt: string;
