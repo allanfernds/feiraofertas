@@ -2,6 +2,7 @@ import { Product } from '@/app/lib/types';
 import Image from 'next/image';
 import React from 'react';
 import { formatarData } from '@/app/lib/utils';
+// import CategoriesCarousel from '@/app/ui/CategoriesCarousel';
 
 type Params = {
   slug: string;
@@ -9,6 +10,14 @@ type Params = {
 
 type Props = {
   params: Params;
+};
+
+const getAllproducts = async () => {
+  const products = await fetch('http://localhost:3001/products', {
+    cache: 'no-store',
+  });
+  const response = products.json();
+  return response;
 };
 
 const getProductBySlug = async (slug: string) => {
@@ -21,9 +30,9 @@ const getProductBySlug = async (slug: string) => {
 
 const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.slug);
-  console.log(product);
+  const products = await getAllproducts();
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 py-8">
+    <div className="bg-gray-100 dark:bg-gray-800 py-8 flex flex-col justify-center items-center">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row -mx-4">
           <div className="md:flex-1 px-4">
@@ -85,6 +94,9 @@ const page: React.FC<Props> = async ({ params }) => {
           </div>
         </div>
       </div>
+      {/* <div className="container">
+        <CategoriesCarousel products={products} />
+      </div> */}
     </div>
   );
 };

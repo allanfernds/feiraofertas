@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Product } from './lib/types';
-import CardProduct from './ui/CardProduct';
+import { CardProduct } from './ui/CardProduct';
 
 const getAllproducts = async () => {
   const products = await fetch('http://localhost:3001/products', {
@@ -14,7 +14,7 @@ export default async function Home() {
   const products: Product[] = await getAllproducts();
   return (
     <main className="flex min-h-screen justify-center items-center">
-      <div className="h-screen container flex flex-wrap gap-8 pt-10 md:p-24 justify-center items-center ">
+      <div className=" max-w-[1200px] mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <CardProduct key={product.id} {...product} />
         ))}
