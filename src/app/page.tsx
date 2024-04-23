@@ -14,7 +14,7 @@ export default async function Home() {
   const products: Product[] = await getAllproducts();
   return (
     <main className="flex min-h-screen justify-center items-center">
-      <div className=" max-w-[1200px] mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="p-4 lg:p-0 max-w-[1200px] mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <CardProduct key={product.id} {...product} />
         ))}

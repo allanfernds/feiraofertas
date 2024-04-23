@@ -1,3 +1,21 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "ecmaVerion": 2021,
+    "sourceTpe": "module"
+  },
+  "rules": {
+    // Add your custom ESLint rules here
+  }
 }
