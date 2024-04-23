@@ -8,6 +8,11 @@ const categories: Category[] = [
     slug: 'tecnologia',
   },
   {
+    id: 1,
+    title: 'Acessórios',
+    slug: 'acessorios',
+  },
+  {
     id: 2,
     title: 'Moda',
     slug: 'moda',
@@ -17,30 +22,22 @@ const categories: Category[] = [
     title: 'Alimentos e Bebidas',
     slug: 'alimentos-bebidas',
   },
-  {
-    id: 4,
-    title: 'Saúde e Bem-Estar',
-    slug: 'saude-bem-estar',
-  },
-  {
-    id: 5,
-    title: 'Viagens',
-    slug: 'viagens',
-  },
+  { id: 4, title: 'Saúde e Bem-Estar', slug: 'saude-bem-estar' },
+  { id: 5, title: 'Viagens', slug: 'viagens' },
 ];
 
 const CategoriesBar = () => {
   return (
     <ul
-      className="menu menu-horizontal w-full md:justify-center 
-    items-center bg-custom-orange text-custom-grey font-medium  text-md h-12 md:h-auto flex-nowrap"
+      className=" w-full md:justify-center flex gap-2
+    items-center border-t-4 md:border-t-8  border-custom-orange bg-custom-grey text-custom-grey-3 font-medium text-md md:h-12 md:flex-nowrap"
     >
       {/* MENU MOBILE============================================================== */}
-      <div className="dropdown">
+      <div className="dropdown md:hidden my-2 ml-3">
         <div
           tabIndex={0}
           role="button"
-          className="btn btn-sm btn-ghost md:invisible bg-custom-orange border-none text-white text-left"
+          className="btn btn-sm btn-ghost md:invisible bg-white/10 border-none text-white text-left"
         >
           Categorias
         </div>
@@ -59,12 +56,9 @@ const CategoriesBar = () => {
         </ul>
       </div>
       {/* MENU MOBILE============================================================== */}
-      <li className="hover:text-custom-white">
-        <Link href={`/`}>Recentes</Link>
-      </li>
       {categories.map((category) => (
         <li
-          className="hidden md:block mx-4 text-center hover:text-custom-white"
+          className="hidden px-2 py-1  md:block text-center text-sm rounded-md hover:bg-custom-orange hover:text-white"
           key={category.id}
         >
           <Link href={`/${category.slug}`}>{category.title}</Link>
