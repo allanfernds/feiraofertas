@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { formatarData } from '@/app/lib/utils';
 // import CategoriesCarousel from '@/app/ui/CategoriesCarousel';
+import CompanyCard from '../../ui/CompanyCard';
 
 type Params = {
   slug: string;
@@ -32,13 +33,13 @@ const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.slug);
   const products = await getAllproducts();
   return (
-    <div className="bg-gray-100  py-8 flex flex-col justify-center items-center">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row mx-4">
-          <div className="md:flex-1 px-4">
-            <div className="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+    <div className="bg-gra-400 py-8 flex flex-col justify-center items-center">
+      <div className="">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:flex-1 px-8">
+            <div className=" rounded-l mb-4">
               <Image
-                className="w-full h-full object-cover rounded-lg"
+                className=" rounded-lg"
                 src={product.imageURL}
                 alt={product.title}
                 width={500}
@@ -50,14 +51,16 @@ const page: React.FC<Props> = async ({ params }) => {
             <p className="text-gray-600 text-sm mt-2">
               {formatarData(product.createdAt)}
             </p>
-            <h2 className="text-2xl font-bold text-gray-800  mb-2">
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
               {product.title}
             </h2>
-            <p className="text-gray-600 text-sm mb-4 ">{product.description}</p>
+            <p className="text-gray-600 text-sm mb-4 w-72">
+              {product.description}
+            </p>
 
             <div className="flex flex-col mb-4">
               <div className="mr-4">
-                <span className="font-medium text-gray-700 ">
+                <span className="font-medium text-gray-700">
                   de
                   {'  '}
                 </span>
@@ -74,36 +77,36 @@ const page: React.FC<Props> = async ({ params }) => {
                     ? 'R$' + product.discountPrice
                     : 'Grátis'}
                 </span>
-                {product.installment && (
+                {product.installment > 0 ? (
                   <>
                     <span className=" font-medium text-emerald-600 block text-lg">
                       {'ou ' +
                         product.installment +
                         'x de ' +
-                        (product.discountPrice / product.installment).toFixed(
-                          2
-                        )}
+                        (
+                          product.discountPrice / product.installment
+                        ).toLocaleString('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })}
                     </span>
                   </>
+                ) : (
+                  ''
                 )}
               </div>
-            </div>
-            <div className="mb-4">
-              <div className="flex -mx-2 mb-4">
-                <div className="w-1/2 px-2">
-                  <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg font-bold">
-                    VER OFERTA
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <span className="font-bold text-gray-700 "></span>
-              <p className="text-gray-600 text-sm mt-2">
+              <p className="text-gray-600 text-xs">
                 válido até o dia {'  '}
                 {formatarData(product.expirationDate)}
               </p>
             </div>
+
+            <div className="w-1/2 ">
+              <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg font-bold">
+                VER OFERTA
+              </button>
+            </div>
+            {/* <CompanyCard /> */}
           </div>
         </div>
       </div>
