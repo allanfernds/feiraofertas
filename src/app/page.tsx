@@ -3,10 +3,14 @@ import { Product } from './lib/types';
 import { CardProduct } from './ui/CardProduct';
 
 const getAllproducts = async () => {
+  // Simular atraso de 3 segundos
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+
   const products = await fetch('http://localhost:3001/products', {
     cache: 'no-store',
   });
-  const response = products.json();
+  const response = await products.json();
+
   return response;
 };
 

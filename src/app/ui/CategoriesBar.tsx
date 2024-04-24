@@ -33,7 +33,7 @@ const CategoriesBar = () => {
       className=" text-md flex w-full items-center
     gap-2 border-t-4 border-custom-orange  bg-custom-grey font-medium text-custom-grey-3 md:h-12 md:flex-nowrap md:justify-center md:border-t-8"
     >
-      {/* MENU MOBILE============================================================== */}
+      {/* MENU MOBILE   =================================*/}
       <div className="dropdown my-2 ml-3 md:hidden">
         <div
           tabIndex={0}
@@ -48,18 +48,18 @@ const CategoriesBar = () => {
         >
           {categories.map((category) => (
             <li className="mx-2 text-center text-custom-grey-2 " key={category.id}>
-              <Link href={`/${category.slug}`}>{category.title}</Link>
+              <Link href={`/categoria/${category.slug}`}>{category.title}</Link>
             </li>
           ))}
         </ul>
       </div>
-      {/* MENU MOBILE============================================================== */}
+      {/* MENU MOBILE   ================================*/}
       {categories.map((category) => (
         <li
           className="hidden rounded-md px-2  py-1 text-center text-sm hover:bg-custom-orange hover:text-white md:block"
           key={category.id}
         >
-          <Link href={`/${category.slug}`}>{category.title}</Link>
+          <Link href={`/categoria/?categoria=${category.slug}`}>{category.title}</Link>
         </li>
       ))}
     </ul>
