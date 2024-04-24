@@ -1,16 +1,14 @@
+import React from 'react';
 import Link from 'next/link';
 import CategoriesBar from './CategoriesBar';
 
 export const NavBar = () => {
   return (
     <>
-      <div className="navbar bg-custom-grey justify-center items-center">
-        <div className="flex flex-col md:gap-56 md:flex-row ">
+      <div className="navbar items-center justify-center bg-custom-grey">
+        <div className="flex flex-col md:flex-row md:gap-56 ">
           <div className="">
-            <Link
-              className="text-custom-white btn btn-ghost text-xl whitespace-nowrap"
-              href="/"
-            >
+            <Link className="btn btn-ghost whitespace-nowrap text-xl text-custom-white" href="/">
               Feira Ofertas
             </Link>
           </div>
@@ -18,7 +16,7 @@ export const NavBar = () => {
             <input
               type="text"
               placeholder="Pesquise por produtos, categorias, marca ou loja"
-              className="input input-bordered w-[95vw] md:w-96 h-9 text-sm"
+              className="input input-bordered h-9 w-[95vw] text-sm md:w-96"
             />
           </div>
         </div>

@@ -1,9 +1,10 @@
+import React from 'react';
 import Link from 'next/link';
 import { Category } from '../lib/types';
 
 const categories: Category[] = [
   {
-    id: 1,
+    id: 6,
     title: 'Tecnologia',
     slug: 'tecnologia',
   },
@@ -29,27 +30,24 @@ const categories: Category[] = [
 const CategoriesBar = () => {
   return (
     <ul
-      className=" w-full md:justify-center flex gap-2
-    items-center border-t-4 md:border-t-8  border-custom-orange bg-custom-grey text-custom-grey-3 font-medium text-md md:h-12 md:flex-nowrap"
+      className=" text-md flex w-full items-center
+    gap-2 border-t-4 border-custom-orange  bg-custom-grey font-medium text-custom-grey-3 md:h-12 md:flex-nowrap md:justify-center md:border-t-8"
     >
       {/* MENU MOBILE============================================================== */}
-      <div className="dropdown md:hidden my-2 ml-3">
+      <div className="dropdown my-2 ml-3 md:hidden">
         <div
           tabIndex={0}
           role="button"
-          className="btn btn-sm btn-ghost md:invisible bg-white/10 border-none text-white text-left"
+          className="btn btn-ghost btn-sm border-none bg-white/10 text-left text-white md:invisible"
         >
           Categorias
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
         >
           {categories.map((category) => (
-            <li
-              className="mx-2 text-center text-custom-grey-2 "
-              key={category.id}
-            >
+            <li className="mx-2 text-center text-custom-grey-2 " key={category.id}>
               <Link href={`/${category.slug}`}>{category.title}</Link>
             </li>
           ))}
@@ -58,7 +56,7 @@ const CategoriesBar = () => {
       {/* MENU MOBILE============================================================== */}
       {categories.map((category) => (
         <li
-          className="hidden px-2 py-1  md:block text-center text-sm rounded-md hover:bg-custom-orange hover:text-white"
+          className="hidden rounded-md px-2  py-1 text-center text-sm hover:bg-custom-orange hover:text-white md:block"
           key={category.id}
         >
           <Link href={`/${category.slug}`}>{category.title}</Link>
