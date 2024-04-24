@@ -59,7 +59,7 @@ const CategoriesBar = () => {
           className="hidden rounded-md px-2  py-1 text-center text-sm hover:bg-custom-orange hover:text-white md:block"
           key={category.id}
         >
-          <Link href={`/categoria/?categoria=${category.slug}`}>{category.title}</Link>
+          <Link href={`/categoria/${category.slug}`}>{category.title}</Link>
         </li>
       ))}
     </ul>

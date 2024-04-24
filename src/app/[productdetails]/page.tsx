@@ -38,9 +38,9 @@ const page: React.FC<Props> = async ({ params }) => {
       <div>
         <div className="flex flex-col md:flex-row">
           <div className="px-8 md:flex-1">
-            <div className=" mb-4 rounded-l">
+            <div className="mb-4 rounded-l">
               <Image
-                className=" rounded-lg"
+                className="rounded-lg"
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
