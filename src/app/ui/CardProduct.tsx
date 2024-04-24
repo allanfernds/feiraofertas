@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export const CardProduct = ({ ...product }: Product) => {
   return (
-    <Link href={`/productpage/${product.slug}`}>
+    <Link href={`/${product.slug}`}>
       <div className="card h-[450px] justify-between rounded-md border bg-base-100 shadow-xl md:w-[250px]">
         <figure>
           <Image

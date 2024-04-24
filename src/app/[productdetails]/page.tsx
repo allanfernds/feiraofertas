@@ -3,10 +3,10 @@ import Image from 'next/image';
 import React from 'react';
 import { formatarData } from '@/app/lib/utils';
 // import CategoriesCarousel from '@/app/ui/CategoriesCarousel';
-import CompanyCard from '../../ui/CompanyCard';
+import CompanyCard from '../ui/CompanyCard';
 
 type Params = {
-  slug: string;
+  productdetails: string;
 };
 
 type Props = {
@@ -30,7 +30,8 @@ const getProductBySlug = async (slug: string) => {
 };
 
 const page: React.FC<Props> = async ({ params }) => {
-  const [product]: Product[] = await getProductBySlug(params.slug);
+  const [product]: Product[] = await getProductBySlug(params.productdetails);
+  console.log(params);
   // const products = await getAllproducts();
   return (
     <div className="bg-gra-400 flex flex-col items-center justify-center py-8">
