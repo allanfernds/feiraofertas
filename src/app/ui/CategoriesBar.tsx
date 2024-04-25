@@ -13,7 +13,6 @@ const getAllCategories = async () => {
 
 const CategoriesBar = async () => {
   const categories = await getAllCategories();
-  console.log(categories);
   return (
     <ul
       className=" text-md flex w-full items-center
@@ -42,7 +41,7 @@ const CategoriesBar = async () => {
       {/* MENU MOBILE   ================================*/}
       {categories.map((category: Category) => (
         <li
-          className="hidden rounded-md px-2  py-1 text-center text-sm hover:bg-custom-orange hover:text-white md:block"
+          className="hidden rounded-md px-2 py-1 text-center text-sm hover:bg-custom-orange hover:text-white md:block"
           key={category.id}
         >
           <Link href={`/categoria/${category.slug}`}>{category.title}</Link>

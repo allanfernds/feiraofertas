@@ -1,16 +1,26 @@
-import { Category } from '@/app/lib/types';
 import React from 'react';
+import { Category, Product } from '@/app/lib/types';
+import ProductsGrid from '@/app/ui/ProductsGrid';
+import { CardProduct } from '@/app/ui/CardProduct';
 
-const getAllproducts = async (category: string) => {
-  // Simular atraso de 3 segundos
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+const getAllProducts = async (categorySlug: string) => {
+  // Realizar as requisições simultaneamente
 
-  const products = await fetch(`http://localhost:3001/products?slug=${category}`, {
+  const categoryResponse = await fetch(`http://localhost:3001/categories?slug=${categorySlug}`, {
     cache: 'no-store',
   });
-  const response: Category = await products.json();
+  const [categoryData]: Category[] = await categoryResponse.json();
+  const id: number = categoryData.id;
+  const productsResponse = await fetch(`http://localhost:3001/products?category_id=${id}`, {
+    cache: 'no-store',
+  });
+  // Extrair os dados das respostas
+  const productsData: Product[] = await productsResponse.json();
 
-  return response;
+  return {
+    categoryData,
+    productsData,
+  };
 };
 
 type Params = {
@@ -22,13 +32,19 @@ type Props = {
 };
 
 const page: React.FC<Props> = async ({ params }: Props) => {
-  console.log(params.slug);
-  const products = await getAllproducts(params.slug);
+  const data = await getAllProducts(params.slug);
   return (
     <main>
-      <header>{products}</header>
+      <header className="flex h-[200px] flex-col justify-center p-4 md:px-32">
+        <h1 className="mb-4 text-xl font-medium">{data.categoryData.title}</h1>
+        <p className="font-normal text-gray-500">{data.categoryData.description}</p>
+      </header>
+      <ProductsGrid>
+        {data.productsData.map((product) => (
+          <CardProduct key={product.id} {...product} />
+        ))}
+      </ProductsGrid>
     </main>
   );
 };
-
 export default page;
