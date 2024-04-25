@@ -6,8 +6,6 @@ import ProductsGrid from './ui/ProductsGrid';
 const getAllproducts = async () => {
   // Simular atraso de 3 segundos
   await new Promise((resolve) => setTimeout(resolve, 3000));
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const products = await fetch('http://localhost:3001/products', {
     cache: 'no-store',
   });

@@ -4,7 +4,7 @@ import ProductsGrid from '@/app/ui/ProductsGrid';
 import { CardProduct } from '@/app/ui/CardProduct';
 
 const getAllProducts = async (categorySlug: string) => {
-  // Realizar as requisições simultaneamente
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const categoryResponse = await fetch(`http://localhost:3001/categories?slug=${categorySlug}`, {
     cache: 'no-store',
@@ -34,17 +34,17 @@ type Props = {
 const page: React.FC<Props> = async ({ params }: Props) => {
   const data = await getAllProducts(params.slug);
   return (
-    <main>
-      <header className="flex h-[200px] flex-col justify-center p-4 md:px-32">
+    <div>
+      <div className="flex  flex-col justify-center p-4 md:px-32">
         <h1 className="mb-4 text-xl font-medium">{data.categoryData.title}</h1>
         <p className="font-normal text-gray-500">{data.categoryData.description}</p>
-      </header>
+      </div>
       <ProductsGrid>
         {data.productsData.map((product) => (
           <CardProduct key={product.id} {...product} />
         ))}
       </ProductsGrid>
-    </main>
+    </div>
   );
 };
 export default page;
