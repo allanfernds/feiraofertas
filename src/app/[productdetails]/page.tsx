@@ -34,7 +34,7 @@ const page: React.FC<Props> = async ({ params }) => {
   console.log(params);
   // const products = await getAllproducts();
   return (
-    <div className="bg-gra-400 flex flex-col items-center justify-center py-8">
+    <div className="bg-gra-400 flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
         <div className="flex flex-col md:flex-row">
           <div className="px-8 md:flex-1">
