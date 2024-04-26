@@ -26,8 +26,8 @@ const CategoriesBar = () => {
   }, []);
 
   return (
-    <nav className="">
-      <ul className="text-md flex w-[100%] items-center gap-2 border-t-4 border-custom-orange bg-custom-grey font-medium text-gray-800 md:flex-nowrap md:justify-center md:border-t-8">
+    <nav>
+      <ul className="text-md flex w-[100%] items-center border-t-4 border-custom-orange bg-custom-grey font-medium text-gray-800 md:flex-nowrap md:justify-center md:border-t-8">
         {/* MENU MOBILE   =================================*/}
         <div className="dropdown z-40 my-2 ml-3 md:hidden">
           <div
@@ -42,7 +42,7 @@ const CategoriesBar = () => {
             className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
           >
             {categories.map((category: Category) => (
-              <li className="mx-2 text-center text-custom-grey-2 " key={category.id}>
+              <li className="mx-2 text-center text-custom-grey-2" key={category.id}>
                 <Link href={`/categoria/${category.slug}`}>{category.title}</Link>
               </li>
             ))}
