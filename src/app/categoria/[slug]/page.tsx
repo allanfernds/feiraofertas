@@ -35,9 +35,11 @@ const page: React.FC<Props> = async ({ params }: Props) => {
   const data = await getAllProducts(params.slug);
   return (
     <div>
-      <div className="flex  flex-col justify-center p-4 md:px-32">
-        <h1 className="mb-4 text-xl font-medium">{data.categoryData.title}</h1>
-        <p className="font-normal text-gray-500">{data.categoryData.description}</p>
+      <div className="flex flex-col items-center justify-center py-10 md:py-20">
+        <h1 className="mb-2 text-2xl font-bold text-neutral-700">{data.categoryData.title}</h1>
+        <p className="w-[320px] text-center font-normal text-gray-500 md:w-[500px] lg:w-full">
+          {data.categoryData.description}
+        </p>
       </div>
       <ProductsGrid>
         {data.productsData.map((product) => (

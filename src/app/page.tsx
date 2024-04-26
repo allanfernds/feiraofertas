@@ -17,7 +17,11 @@ const getAllproducts = async () => {
 export default async function Home() {
   const products: Product[] = await getAllproducts();
   return (
-    <main>
+    <main className="z-10">
+      <div className="flex items-center justify-center">
+        <h1 className="mb-2 pt-20 text-2xl font-bold text-neutral-700">Últimas ofertas</h1>
+      </div>
+
       <ProductsGrid>
         {products.map((product) => (
           <CardProduct key={product.id} {...product} />

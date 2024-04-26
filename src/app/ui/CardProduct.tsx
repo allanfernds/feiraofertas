@@ -6,7 +6,7 @@ import Link from 'next/link';
 export const CardProduct = ({ ...product }: Product) => {
   return (
     <Link href={`/${product.slug}`}>
-      <div className="card h-[450px] justify-between rounded-md border bg-base-100 shadow-xl md:w-[250px]">
+      <div className="card z-0 justify-between rounded-md border bg-base-100 shadow-xl md:h-[440px] md:w-[250px]">
         <figure>
           <Image
             width={410}
@@ -17,12 +17,12 @@ export const CardProduct = ({ ...product }: Product) => {
             className=" p-8"
           />
         </figure>
-        <div className="h-[200px] p-4">
+        <div className="h-[200px] p-4 pb-2">
           <h2 className="text-md">{product.discountPrice && 'a partir de'}</h2>
-          <h2 className="card-title text-2xl text-neutral-800">
+          <h2 className="card-title text-3xl text-neutral-700">
             {product.discountPrice ? 'R$' + product.discountPrice : 'Grátis'}
           </h2>
-          <p className="w-24 text-xs line-through">{product.price}</p>
+          <p className="w-24 text-sm line-through">{product.price}</p>
           <p className="mt-2 space-x-1">{product.description.slice(0, 47) + '...'}</p>
           <span className="m-0 inline h-1 text-xs font-bold text-green-500">
             {'Frete ' + (product.freight > 0 ? 'R$ ' + product.freight + ',00' : 'Grátis')}
