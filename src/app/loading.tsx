@@ -1,4 +1,3 @@
-import React from 'react';
 import { SkeletonProductCard } from './ui/skeletons/Skeletons';
 
 const loading = () => {

@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { Product } from '@/app/lib/types';
 import { MiniCardProduct } from './CardProduct';
 

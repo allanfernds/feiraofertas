@@ -1,4 +1,3 @@
-import React from 'react';
 import { Product } from './lib/types';
 import { CardProduct } from './ui/CardProduct';
 import ProductsGrid from './ui/ProductsGrid';

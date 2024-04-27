@@ -1,4 +1,3 @@
-import React from 'react';
 import { Category, Product } from '@/app/lib/types';
 import ProductsGrid from '@/app/ui/ProductsGrid';
 import { CardProduct } from '@/app/ui/CardProduct';
@@ -21,7 +20,6 @@ const getAllProducts = async (categorySlug: string) => {
     productsData,
   };
 };
-
 
 type Params = {
   slug: string;
