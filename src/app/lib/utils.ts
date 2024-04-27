@@ -12,9 +12,14 @@ export const formatarData = (data: string): string =>  {
   const mes = meses[mesIndex];
   const ano = dataObj.getFullYear();
 
+  // Obtém hora, minutos e segundos
+  const hora = dataObj.getHours();
+
+
   // Retorna a data formatada
-  return dia + ' de ' + mes + ', ' + ano;
+  return `${dia} de ${mes}, ${ano} ás ${hora}h`;
 }
+
 
 
 
