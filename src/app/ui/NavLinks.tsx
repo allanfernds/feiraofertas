@@ -8,7 +8,6 @@ import { usePathname } from 'next/navigation';
 
 export const NavLinks = (category: Category) => {
   const pathname = usePathname();
-  console.log(pathname === `/categoria/${category.slug}`);
   return (
     <Link
       className={clsx(

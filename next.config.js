@@ -22,7 +22,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'brandcenter.americanas.io',
+        hostname: 'http2.mlstatic.com',
         port: '',
         pathname: '**',
       },

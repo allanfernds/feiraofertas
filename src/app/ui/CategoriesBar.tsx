@@ -6,11 +6,14 @@ import { Category } from '../lib/types';
 import { NavLinks } from './NavLinks';
 
 const getAllCategories = async () => {
-  const categories = await fetch('http://localhost:3001/categories_to_show', {
-    cache: 'no-store',
-  });
-  const response = await categories.json();
-  return response;
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    const categories = await fetch('http://localhost:3001/categories_to_show');
+    const response = await categories.json();
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const CategoriesBar = () => {

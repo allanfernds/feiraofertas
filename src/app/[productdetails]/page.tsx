@@ -31,8 +31,6 @@ const getProductBySlug = async (slug: string) => {
 
 const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.productdetails);
-  console.log(params);
-  // const products = await getAllproducts();
   return (
     <div className="bg-gra-400 flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
@@ -40,7 +38,7 @@ const page: React.FC<Props> = async ({ params }) => {
           <div className="px-8 md:flex-1">
             <div className="mb-4 rounded-l">
               <Image
-                className="rounded-lg"
+                className="shadow-custom-shadow rounded-lg"
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
@@ -49,7 +47,7 @@ const page: React.FC<Props> = async ({ params }) => {
               />
             </div>
           </div>
-          <div className="px-4 md:flex-1">
+          <div className="shadow-custom-shadow bg-white px-4 pt-4 md:flex-1">
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
             <h2 className="mb-2 text-2xl font-bold text-gray-800">{product.title}</h2>
             <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
@@ -89,12 +87,12 @@ const page: React.FC<Props> = async ({ params }) => {
               </p>
             </div>
 
-            <div className="w-1/2 ">
+            <div className="w-1/2">
               <button className="w-full rounded-lg bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600">
                 VER OFERTA
               </button>
             </div>
-            <CompanyCard />
+            <CompanyCard company={product.company} />
           </div>
         </div>
       </div>

@@ -10,7 +10,6 @@ const getAllproducts = async () => {
     cache: 'no-store',
   });
   const response = await products.json();
-  console.log(response);
   return response;
 };
 

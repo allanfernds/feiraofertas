@@ -8,7 +8,7 @@ export type Category = {
 
 export type Company = {
   id: number;
-  compnayName: string;
+  companyName: string;
   slug?: string;
   logoURL: string;
   location: string;

@@ -4,10 +4,9 @@ import { Product } from '../lib/types';
 import Link from 'next/link';
 
 export const CardProduct = (product: Product) => {
-  console.log(product);
   return (
     <Link href={`/${product.slug}`}>
-      <div className="card relative z-0 justify-between rounded-md border bg-base-100 shadow-xl md:h-[440px] md:w-[250px]">
+      <div className="card relative z-0 justify-between rounded-md  bg-base-100 shadow-custom-shadow md:h-[440px] md:w-[250px]">
         <figure>
           <Image
             width={410}
@@ -19,12 +18,12 @@ export const CardProduct = (product: Product) => {
           />
         </figure>
         <div className="avatar absolute">
-          <div className="ml-2 mt-2 w-8 rounded shadow-md">
+          <div className="ml-2 mt-2 w-8 rounded shadow-custom-shadow">
             <Image
-              width={500}
-              height={500}
+              width={64}
+              height={64}
               src={product.company.logoURL}
-              alt={product.company.compnayName}
+              alt={product.company.companyName}
               priority={true}
             />
           </div>
