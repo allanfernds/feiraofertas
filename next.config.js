@@ -1,4 +1,3 @@
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -7,22 +6,28 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'a-static.mlcdn.com.br',
         port: '',
-        pathname: '**'
+        pathname: '**',
       },
       {
         protocol: 'https',
         hostname: 'plus.unsplash.com',
         port: '',
-        pathname: '**'
+        pathname: '**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
-        pathname: '**'
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'brandcenter.americanas.io',
+        port: '',
+        pathname: '**',
       },
     ],
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -3,10 +3,11 @@ import Image from 'next/image';
 import { Product } from '../lib/types';
 import Link from 'next/link';
 
-export const CardProduct = ({ ...product }: Product) => {
+export const CardProduct = (product: Product) => {
+  console.log(product);
   return (
     <Link href={`/${product.slug}`}>
-      <div className="card z-0 justify-between rounded-md border bg-base-100 shadow-xl md:h-[440px] md:w-[250px]">
+      <div className="card relative z-0 justify-between rounded-md border bg-base-100 shadow-xl md:h-[440px] md:w-[250px]">
         <figure>
           <Image
             width={410}
@@ -14,10 +15,21 @@ export const CardProduct = ({ ...product }: Product) => {
             src={product.imageURL}
             alt={product.title}
             priority={true}
-            className=" p-8"
+            className="p-8"
           />
         </figure>
-        <div className="h-[200px] p-4 pb-2">
+        <div className="avatar absolute">
+          <div className="ml-2 mt-2 w-8 rounded shadow-md">
+            <Image
+              width={500}
+              height={500}
+              src={product.company.logoURL}
+              alt={product.company.compnayName}
+              priority={true}
+            />
+          </div>
+        </div>
+        <div className="h-[200px]  p-4 pb-0 pt-0">
           <h2 className="text-md">{product.discountPrice && 'a partir de'}</h2>
           <h2 className="card-title text-3xl text-neutral-700">
             {product.discountPrice ? 'R$' + product.discountPrice : 'Grátis'}

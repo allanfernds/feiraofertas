@@ -6,6 +6,14 @@ export type Category = {
   description?: string;
 };
 
+export type Company = {
+  id: number;
+  compnayName: string;
+  slug?: string;
+  logoURL: string;
+  location: string;
+};
+
 
 
 export type Product = {
@@ -20,7 +28,7 @@ export type Product = {
   categoryID: number;
   saleURL: string;
   installment: number;
-  companyID: number;
+  company: Company;
   createdAt: string;
   updatedAt: string;
   expirationDate: string;

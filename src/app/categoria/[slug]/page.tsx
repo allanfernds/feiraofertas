@@ -4,17 +4,16 @@ import ProductsGrid from '@/app/ui/ProductsGrid';
 import { CardProduct } from '@/app/ui/CardProduct';
 
 const getAllProducts = async (categorySlug: string) => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const categoryResponse = await fetch(`http://localhost:3001/categories?slug=${categorySlug}`, {
     cache: 'no-store',
   });
+
   const [categoryData]: Category[] = await categoryResponse.json();
   const id: number = categoryData.id;
   const productsResponse = await fetch(`http://localhost:3001/products?category_id=${id}`, {
     cache: 'no-store',
   });
-  // Extrair os dados das respostas
+
   const productsData: Product[] = await productsResponse.json();
 
   return {
@@ -22,6 +21,7 @@ const getAllProducts = async (categorySlug: string) => {
     productsData,
   };
 };
+
 
 type Params = {
   slug: string;
