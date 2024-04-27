@@ -7,15 +7,13 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "@typescript-eslint"],
   "parserOptions": {
     "ecmaVerion": 2021,
     "sourceTpe": "module"
   },
   "rules": {
     // Add your custom ESLint rules here
+    "react/react-in-jsx-scope": "off"
   }
 }

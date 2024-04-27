@@ -1,7 +1,7 @@
 import { Product } from '@/app/lib/types';
 import Image from 'next/image';
-import React from 'react';
-import { formatarData } from '@/app/lib/utils';
+
+import { calcularDescontoPorcentagem, formatarData } from '@/app/lib/utils';
 // import CategoriesCarousel from '@/app/ui/CategoriesCarousel';
 import CompanyCard from '../ui/CompanyCard';
 
@@ -32,13 +32,13 @@ const getProductBySlug = async (slug: string) => {
 const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.productdetails);
   return (
-    <div className="bg-gra-400 flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
+    <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row">
           <div className="px-8 md:flex-1">
             <div className="mb-4 rounded-l">
               <Image
-                className="shadow-custom-shadow rounded-lg"
+                className="rounded-lg border p-2"
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
@@ -47,7 +47,7 @@ const page: React.FC<Props> = async ({ params }) => {
               />
             </div>
           </div>
-          <div className="shadow-custom-shadow bg-white px-4 pt-4 md:flex-1">
+          <div className="bg-white px-4 pt-4 md:flex-1">
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
             <h2 className="mb-2 text-2xl font-bold text-gray-800">{product.title}</h2>
             <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
@@ -64,9 +64,13 @@ const page: React.FC<Props> = async ({ params }) => {
                 <span className="mt-4 font-medium text-gray-700">
                   {product.discountPrice ? 'por apenas' : ''}
                 </span>
-                <span className="block text-3xl font-semibold text-black">
-                  {product.discountPrice ? 'R$' + product.discountPrice : 'Grátis'}
-                </span>
+                <h2 className="card-title items-baseline gap-1">
+                  <span className="text-md mono font-medium">R$</span>
+                  <span className="text-3xl font-semibold">{parseFloat(product.discountPrice.toString()).toFixed(2)}</span>
+                  <span className="text-sm text-green-500 ml-2">
+                    {calcularDescontoPorcentagem(product.price, product.discountPrice)}
+                  </span>
+                </h2>
 
                 {product.installment > 0 ? (
                   <>

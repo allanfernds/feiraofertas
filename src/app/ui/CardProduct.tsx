@@ -1,7 +1,7 @@
-import React from 'react';
 import Image from 'next/image';
 import { Product } from '../lib/types';
 import Link from 'next/link';
+import { calcularDescontoPorcentagem } from '@/app/lib/utils';
 
 export const CardProduct = (product: Product) => {
   return (
@@ -14,7 +14,7 @@ export const CardProduct = (product: Product) => {
             src={product.imageURL}
             alt={product.title}
             priority={true}
-            className="p-8"
+            className="p-9"
           />
         </figure>
         <div className="avatar absolute">
@@ -28,16 +28,23 @@ export const CardProduct = (product: Product) => {
             />
           </div>
         </div>
-        <div className="h-[200px]  p-4 pb-0 pt-0">
-          <h2 className="text-md">{product.discountPrice && 'a partir de'}</h2>
-          <h2 className="card-title text-3xl text-neutral-700">
-            {product.discountPrice ? 'R$' + product.discountPrice : 'Grátis'}
-          </h2>
-          <p className="w-24 text-sm line-through">{product.price}</p>
-          <p className="mt-2 space-x-1">{product.description.slice(0, 47) + '...'}</p>
-          <span className="m-0 inline h-1 text-xs font-bold text-green-500">
-            {'Frete ' + (product.freight > 0 ? 'R$ ' + product.freight + ',00' : 'Grátis')}
+        <div className="h-[200px] p-4 pb-0 pt-6">
+          <span className="font-base text-sm text-gray-500 line-through">
+            {'R$' + product.price}
           </span>
+          <h2 className="card-title items-baseline gap-1 text-2xl text-neutral-700">
+            <span className="text-base font-semibold">R$</span>
+            {product.discountPrice && product.discountPrice}
+            <span className="text-sm text-green-500 ml-2">
+              {calcularDescontoPorcentagem(product.price, product.discountPrice)}
+            </span>
+          </h2>
+          <div className="flex pb-2 h-28 flex-col justify-between">
+            <p className="mt-2 leading-5">{product.description.slice(0, 62) + '...'}</p>
+            <p className="m-0 text-xs font-bold text-green-500">
+              {'Frete ' + (product.freight > 0 ? 'R$ ' + product.freight + ',00' : 'Grátis')}
+            </p>
+          </div>
         </div>
       </div>
     </Link>
@@ -47,7 +54,7 @@ export const CardProduct = (product: Product) => {
 export const MiniCardProduct = ({ ...product }: Product) => {
   return (
     <Link href={`/productpage/${product.slug}`}>
-      <div className="card  m-4 h-[400px] w-[300px] bg-custom-white shadow-xl">
+      <div className="card m-4 h-[400px] w-[300px] bg-custom-white shadow-xl">
         <figure>
           <Image
             width={200}
