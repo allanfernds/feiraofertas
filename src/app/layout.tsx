@@ -1,9 +1,8 @@
-import React from 'react';
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Lato } from 'next/font/google';
 import { NavBar } from './ui/NavBar';
-const inter = Inter({ subsets: ['latin'] });
+const lato = Lato({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: 'Feira Ofertas',
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className}>
+      <body className={lato.className}>
         <NavBar />
         <main className="bg-gray-100 pt-36 md:pt-20" id="main-content">
           {children}
