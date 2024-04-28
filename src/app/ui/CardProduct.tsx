@@ -32,7 +32,7 @@ export const CardProduct = (product: Product) => {
               priority={true}
             />
           </div>
-          <span className={clsx("border-4 border-black rounded-md absolute mx-auto top-40 font-bold rotate-6 left-[60px] text-2xl px-1",
+          <span className={clsx("border-4 bg-black text-white shadow-lg border-black rounded-md absolute mx-auto top-40 font-bold rotate-6 left-[60px] text-2xl px-1",
             !expiration && "hidden"
             )}>
             EXPIRADO

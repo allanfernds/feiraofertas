@@ -27,13 +27,13 @@ const page: React.FC<Props> = async ({ params }) => {
   return (
     <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
-        <div className="flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row">
+        <div className={clsx("flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row",
+          expiration && "grayscale"
+            )}>
           <div className="relative px-8 md:flex-1">
             <figure className="mb-4 rounded-l">
               <Image
-                className={clsx("rounded-lg border p-2",
-                  expiration && "grayscale"
-                )}
+                className={"rounded-lg border p-2"}
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
@@ -41,15 +41,13 @@ const page: React.FC<Props> = async ({ params }) => {
                 height={650}
               />           
             </figure>
-            <span className={clsx("border-4 text-red-500 border-red-500 rounded-md absolute font-bold rotate-6 top-[150px]  left-40 text-4xl px-1",
+            <span className={clsx("border-4 border-black text-white bg-black rounded-md absolute font-bold rotate-6 top-[150px]  left-40 text-4xl px-1",
               !expiration && "hidden"
               )}>
               EXPIRADO
             </span>
           </div>
-          <div className={clsx("bg-white px-4 pt-4 md:flex-1",
-            expiration && "grayscale"
-          )}>
+          <div className="bg-white px-4 pt-4 md:flex-1">
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
             <h2 className="mb-2 text-2xl font-bold text-gray-800">{product.title}</h2>
             <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
