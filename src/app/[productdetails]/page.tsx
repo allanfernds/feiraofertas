@@ -28,9 +28,9 @@ const page: React.FC<Props> = async ({ params }) => {
     <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
         <div className={clsx("flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row",
-          expiration && "grayscale"
+          expiration && "grayscale",
             )}>
-          <div className="relative px-8 md:flex-1">
+          <div className=" px-8 md:flex-1">
             <figure className="mb-4 rounded-l">
               <Image
                 className={"rounded-lg border p-2"}
@@ -39,13 +39,14 @@ const page: React.FC<Props> = async ({ params }) => {
                 priority={true}
                 width={500}
                 height={650}
-              />           
-            </figure>
-            <span className={clsx("border-4 border-black text-white bg-black rounded-md absolute font-bold rotate-6 top-[150px]  left-40 text-4xl px-1",
+              />   
+              <span className={clsx("border-4 border-black text-white bg-black rounded-md  font-bold rotate-6 text-4xl px-1 ",
               !expiration && "hidden"
               )}>
               EXPIRADO
-            </span>
+            </span>        
+            </figure>
+
           </div>
           <div className="bg-white px-4 pt-4 md:flex-1">
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
