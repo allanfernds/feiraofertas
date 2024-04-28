@@ -1,9 +1,8 @@
 import { Product } from '@/app/lib/types';
 import Image from 'next/image';
-
-import { calcularDescontoPorcentagem, formatarData } from '@/app/lib/utils';
-// import CategoriesCarousel from '@/app/ui/CategoriesCarousel';
+import { calcularDescontoPorcentagem, formatarData, verificarExpiracao } from '@/app/lib/utils';
 import CompanyCard from '../ui/CompanyCard';
+import { clsx } from 'clsx';
 
 type Params = {
   productdetails: string;
@@ -13,13 +12,6 @@ type Props = {
   params: Params;
 };
 
-// const getAllproducts = async () => {
-//   const products = await fetch('http://localhost:3001/products', {
-//     cache: 'no-store',
-//   });
-//   const response = products.json();
-//   return response;
-// };
 
 const getProductBySlug = async (slug: string) => {
   const response = await fetch(`http://localhost:3001/products?slug=${slug}`, {
@@ -31,23 +23,33 @@ const getProductBySlug = async (slug: string) => {
 
 const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.productdetails);
+  const expiration = verificarExpiracao(product.expirationDate)
   return (
     <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
         <div className="flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row">
-          <div className="px-8 md:flex-1">
-            <div className="mb-4 rounded-l">
+          <div className="relative px-8 md:flex-1">
+            <figure className="mb-4 rounded-l">
               <Image
-                className="rounded-lg border p-2"
+                className={clsx("rounded-lg border p-2",
+                  expiration && "grayscale"
+                )}
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
                 width={500}
                 height={650}
-              />
-            </div>
+              />           
+            </figure>
+            <span className={clsx("border-4 text-red-500 border-red-500 rounded-md absolute font-bold rotate-6 top-[150px]  left-40 text-4xl px-1",
+              !expiration && "hidden"
+              )}>
+              EXPIRADO
+            </span>
           </div>
-          <div className="bg-white px-4 pt-4 md:flex-1">
+          <div className={clsx("bg-white px-4 pt-4 md:flex-1",
+            expiration && "grayscale"
+          )}>
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
             <h2 className="mb-2 text-2xl font-bold text-gray-800">{product.title}</h2>
             <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
@@ -93,7 +95,7 @@ const page: React.FC<Props> = async ({ params }) => {
 
             <div className="w-1/2">
               <button className="w-full rounded-lg bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600">
-                VER OFERTA
+                {expiration ? "EXPIRADO" : "VER OFERTA"}
               </button>
             </div>
             <CompanyCard company={product.company} />

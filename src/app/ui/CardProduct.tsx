@@ -1,12 +1,17 @@
 import Image from 'next/image';
 import { Product } from '../lib/types';
 import Link from 'next/link';
-import { calcularDescontoPorcentagem } from '@/app/lib/utils';
+import { calcularDescontoPorcentagem, verificarExpiracao } from '@/app/lib/utils';
+import clsx from 'clsx';
 
 export const CardProduct = (product: Product) => {
+  const expiration = verificarExpiracao(product.expirationDate)
+  console.log(product.id, product.expirationDate, expiration)
   return (
-    <Link href={`/${product.slug}`}>
-      <div className="card relative z-0 justify-between rounded-md  bg-base-100 shadow-custom-shadow md:h-[440px] md:w-[250px]">
+    <Link  href={`/${product.slug}`}>
+      <div className={clsx("card relative z-0 justify-between rounded-md  bg-base-100 shadow-custom-shadow md:h-[440px] md:w-[250px]",
+        expiration && "contrast-75 grayscale"
+      )}>
         <figure>
           <Image
             width={410}
@@ -14,7 +19,7 @@ export const CardProduct = (product: Product) => {
             src={product.imageURL}
             alt={product.title}
             priority={true}
-            className="p-9"
+            className="p-9 scale-95"
           />
         </figure>
         <div className="avatar absolute">
@@ -27,6 +32,11 @@ export const CardProduct = (product: Product) => {
               priority={true}
             />
           </div>
+          <span className={clsx("border-4 border-black rounded-md absolute mx-auto top-40 font-bold rotate-6 left-[60px] text-2xl px-1",
+            !expiration && "hidden"
+            )}>
+            EXPIRADO
+          </span>
         </div>
         <div className="h-[200px] p-4 pb-0 pt-6">
           <span className="font-base text-sm text-gray-500 line-through">

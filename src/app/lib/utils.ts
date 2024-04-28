@@ -20,9 +20,6 @@ export const formatarData = (data: string): string =>  {
   return `${dia} de ${mes}, ${ano} ás ${hora}h`;
 }
 
-
-
-
 export const calcularDescontoPorcentagem = (precoOriginal: number, precoDesconto: number): string => {
   if (precoOriginal <= 0 || precoDesconto <= 0) {
     throw new Error("Valores inválidos para preço original e preço com desconto");
@@ -36,4 +33,15 @@ export const calcularDescontoPorcentagem = (precoOriginal: number, precoDesconto
   const descontoFormatado = desconto.toFixed(0);
 
   return `${descontoFormatado}% OFF`;
+}
+
+export const verificarExpiracao = (expirationDate: string): boolean => {
+  // Cria um objeto de data com a data de expiração fornecida
+  const dataExpiracao = new Date(expirationDate);
+  
+  // Obtém a data atual
+  const dataAtual = new Date();
+
+  // Compara as datas
+  return dataAtual.getTime() > dataExpiracao.getTime();
 }
