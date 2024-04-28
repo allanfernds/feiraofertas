@@ -30,7 +30,7 @@ const CategoriesBar = () => {
 
   return (
     <nav>
-      <ul className="text-md flex w-[100%] items-center border-t-4 border-custom-orange bg-custom-grey font-medium text-gray-800 md:flex-nowrap md:justify-center md:border-t-8">
+      <ul className="text-md flex w-[100%] items-center border-t-4 border-custom-orange bg-custom-grey font-medium text-gray-800 md:flex-nowrap md:justify-center md:border-t-2">
         {/* MENU MOBILE   =================================*/}
         <div className="dropdown z-40 my-2 ml-3 md:hidden">
           <div
