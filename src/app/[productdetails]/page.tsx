@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { calcularDescontoPorcentagem, formatarData, verificarExpiracao } from '@/app/lib/utils';
 import CompanyCard from '../ui/CompanyCard';
 import { clsx } from 'clsx';
+import ExpirationBadge from '../ui/Badges';
 
 type Params = {
   productdetails: string;
@@ -40,11 +41,7 @@ const page: React.FC<Props> = async ({ params }) => {
                 width={500}
                 height={650}
               />   
-              <span className={clsx("border-4 border-black text-white bg-black rounded-md  font-bold rotate-6 text-4xl px-1 ",
-              !expiration && "hidden"
-              )}>
-              EXPIRADO
-            </span>        
+              <ExpirationBadge expiration={expiration} />        
             </figure>
 
           </div>

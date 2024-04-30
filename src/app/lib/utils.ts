@@ -43,5 +43,6 @@ export const verificarExpiracao = (expirationDate: string): boolean => {
   const dataAtual = new Date();
 
   // Compara as datas
+
   return dataAtual.getTime() > dataExpiracao.getTime();
 }
