@@ -4,6 +4,7 @@ import { calcularDescontoPorcentagem, formatarData, verificarExpiracao } from '@
 import CompanyCard from '../ui/CompanyCard';
 import { clsx } from 'clsx';
 import ExpirationBadge from '../ui/Badges';
+import CustomQRcode from '../ui/QRcode';
 
 type Params = {
   productdetails: string;
@@ -12,7 +13,6 @@ type Params = {
 type Props = {
   params: Params;
 };
-
 
 const getProductBySlug = async (slug: string) => {
   const response = await fetch(`http://localhost:3001/products?slug=${slug}`, {
@@ -24,26 +24,29 @@ const getProductBySlug = async (slug: string) => {
 
 const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.productdetails);
-  const expiration = verificarExpiracao(product.expirationDate)
+  const expiration = verificarExpiracao(product.expirationDate);
+  console.log(params.productdetails);
   return (
     <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>
-        <div className={clsx("flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row",
-          expiration && "grayscale",
-            )}>
+        <div
+          className={clsx(
+            'flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row',
+            expiration && 'grayscale',
+          )}
+        >
           <div className=" px-8 md:flex-1">
             <figure className="mb-4 rounded-l">
               <Image
-                className={"rounded-lg border p-2"}
+                className={'rounded-lg border p-2'}
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
                 width={500}
                 height={650}
-              />   
-              <ExpirationBadge expiration={expiration} />        
+              />
+              <ExpirationBadge expiration={expiration} />
             </figure>
-
           </div>
           <div className="bg-white px-4 pt-4 md:flex-1">
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
@@ -51,34 +54,43 @@ const page: React.FC<Props> = async ({ params }) => {
             <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
 
             <div className="mb-4 flex flex-col">
-              <div className="mr-4">
-                <span className="font-medium text-gray-700">
-                  de
-                  {'  '}
-                </span>
-                <span className="text-gray-600 line-through">R$ {product.price}</span>
-              </div>
-              <div>
-                <span className="mt-4 font-medium text-gray-700">
-                  {product.discountPrice ? 'por apenas' : ''}
-                </span>
-                <h2 className="card-title items-baseline gap-1">
-                  <span className="text-md mono font-medium">R$</span>
-                  <span className="text-3xl font-semibold">{parseFloat(product.discountPrice.toString()).toFixed(2)}</span>
-                  <span className="text-sm text-green-500 ml-2">
-                    {calcularDescontoPorcentagem(product.price, product.discountPrice)}
-                  </span>
-                </h2>
-
-                {product.installment > 0 ? (
-                  <>
-                    <span className=" text-NEUTRAL-600 block text-lg font-medium">
-                      {'em ' + product.installment + 'x sem juros '}
+              <div className="flex justify-between  pr-20">
+                <div>
+                  <div className="mr-4">
+                    <span className="font-medium text-gray-700">
+                      de
+                      {'  '}
                     </span>
-                  </>
-                ) : (
-                  ''
-                )}
+                    <span className="text-gray-600 line-through">R$ {product.price}</span>
+                  </div>
+                  <div>
+                    <span className="mt-4 font-medium text-gray-700">
+                      {product.discountPrice ? 'por apenas' : ''}
+                    </span>
+                    <h2 className="card-title items-baseline gap-1">
+                      <span className="text-md mono font-medium">R$</span>
+                      <span className="text-3xl font-semibold">
+                        {parseFloat(product.discountPrice.toString()).toFixed(2)}
+                      </span>
+                      <span className="ml-2 text-sm text-green-500">
+                        {calcularDescontoPorcentagem(product.price, product.discountPrice)}
+                      </span>
+                    </h2>
+
+                    {product.installment > 0 ? (
+                      <>
+                        <span className=" text-NEUTRAL-600 block text-lg font-medium">
+                          {'em ' + product.installment + 'x sem juros '}
+                        </span>
+                      </>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
+                <div className="hidden md:block">
+                  <CustomQRcode url={params.productdetails} />
+                </div>
               </div>
               <span className="BLOCK  text-xs font-bold text-green-500">
                 {'Frete ' + (product.freight > 0 ? 'R$ ' + product.freight + ',00' : 'Grátis')}
@@ -91,7 +103,7 @@ const page: React.FC<Props> = async ({ params }) => {
 
             <div className="w-1/2">
               <button className="w-full rounded-lg bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600">
-                {expiration ? "EXPIRADO" : "VER OFERTA"}
+                {expiration ? 'EXPIRADO' : 'VER OFERTA'}
               </button>
             </div>
             <CompanyCard company={product.company} />

@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 export const CardProduct = (product: Product) => {
   const expiration = verificarExpiracao(product.expirationDate)
-  console.log(product.id, product.expirationDate, expiration)
+
   return (
     <Link  href={`/${product.slug}`}>
       <div className={clsx("card relative z-0 justify-between rounded-md  bg-base-100 shadow-custom-shadow md:h-[440px] md:w-[250px]",
