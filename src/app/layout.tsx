@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR">
       <body className={lato.className}>
         <NavBar />
-        <main className="bg-gray-100 pt-36 md:pt-20" id="main-content">
+        <main className="bg-gray-100 text-neutral-800 pt-36 md:pt-20" id="main-content">
           {children}
         </main>
       </body>
