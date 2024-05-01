@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
-import { NavBar } from './ui/NavBar';
+import { NavBar } from './ui/navbar/NavBar';
 const lato = Lato({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR">
       <body className={lato.className}>
         <NavBar />
-        <main className="bg-gray-100 text-neutral-800 pt-36 md:pt-20" id="main-content">
+        <main className="bg-gray-100 pt-36 text-neutral-800 md:pt-20" id="main-content">
           {children}
         </main>
       </body>

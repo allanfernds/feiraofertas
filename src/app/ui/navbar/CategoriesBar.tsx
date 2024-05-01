@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Category } from '../lib/types';
-import { NavLinks } from './NavLinks';
+import { Category } from '../../lib/types';
+import { NavLinks } from '../NavLinks';
 
 const getAllCategories = async () => {
   try {
