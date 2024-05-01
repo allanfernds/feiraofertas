@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const CompanyCard: React.FC<{ company: Company }> = ({ company }) => {
   return (
-    <div className="items-centers my-6 flex  w-[360px] justify-start rounded-lg bg-white p-3 shadow-custom-shadow">
+    <div className="items-centers my-6 flex  w-96 justify-start rounded-lg bg-white p-3 shadow-custom-shadow">
       <Image
         src={company.logoURL}
         width={500}

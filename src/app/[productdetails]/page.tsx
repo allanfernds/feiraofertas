@@ -30,12 +30,12 @@ const page: React.FC<Props> = async ({ params }) => {
       <div>
         <div
           className={clsx(
-            'flex flex-col items-center justify-center bg-white shadow-custom-shadow md:flex-row',
+            'flex flex-col items-center justify-between gap-8 px-8 bg-white shadow-custom-shadow md:flex-row',
             expiration && 'grayscale',
           )}
         >
-          <div className=" px-8 md:flex-1">
-            <figure className="mb-4 rounded-l">
+          <div className="md:flex-1">
+            <figure className="mb-4 rounded-lg">
               <Image
                 className={'rounded-lg border p-2'}
                 src={product.imageURL}
@@ -53,8 +53,8 @@ const page: React.FC<Props> = async ({ params }) => {
             <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
 
             <div className="mb-4 flex flex-col">
-              <div className="flex justify-between  pr-20">
-                <div>
+              <div className="flex items-center gap-20">
+                <div> 
                   <div className="mr-4">
                     <span className="font-medium text-gray-700">
                       de
@@ -66,7 +66,7 @@ const page: React.FC<Props> = async ({ params }) => {
                     <span className="mt-4 font-medium text-gray-700">
                       {product.discountPrice ? 'por apenas' : ''}
                     </span>
-                    <h2 className="card-title items-baseline gap-1">
+                    <h2 className=" items-baseline gap-1">
                       <span className="text-md mono font-medium">R$</span>
                       <span className="text-3xl font-semibold">
                         {parseFloat(product.discountPrice.toString()).toFixed(2)}
@@ -78,7 +78,7 @@ const page: React.FC<Props> = async ({ params }) => {
 
                     {product.installment > 0 ? (
                       <>
-                        <span className=" text-NEUTRAL-600 block text-lg font-medium">
+                        <span className=" text-neutral-600 block text-lg font-medium">
                           {'em ' + product.installment + 'x sem juros '}
                         </span>
                       </>
@@ -91,7 +91,7 @@ const page: React.FC<Props> = async ({ params }) => {
                   <CustomQRcode url={params.productdetails} />
                 </div>
               </div>
-              <span className="BLOCK  text-xs font-bold text-green-500">
+              <span className="text-xs font-bold text-green-500">
                 {'Frete ' + (product.freight > 0 ? 'R$ ' + product.freight + ',00' : 'Grátis')}
               </span>
               <p className="text-xs text-gray-600">

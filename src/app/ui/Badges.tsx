@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import clsx from 'clsx';
 
 type Props = {
   expiration: boolean;
@@ -6,12 +6,15 @@ type Props = {
 
 const ExpirationBadge: React.FC<Props> = ({ expiration }) => {
   return (
-    <span className={clsx("border-4 border-black text-white bg-black rounded-md font-bold rotate-6 text-4xl px-1 ",
-    { "hidden": !expiration }
-    )}>
-    EXPIRADO
-  </span> 
-  )
-}
+    <span
+      className={clsx(
+        'rounded-full border-4 border-black bg-black px-3 text-4xl font-bold text-white ',
+        { hidden: !expiration },
+      )}
+    >
+      EXPIRADO
+    </span>
+  );
+};
 
-export default ExpirationBadge
+export default ExpirationBadge;
