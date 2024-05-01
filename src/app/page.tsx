@@ -29,7 +29,6 @@ export default async function Home({
   };
 }) {
   const query = searchParams?.query || '';
-  console.log(searchParams);
   const products: Product[] = await getAllproducts(query);
   return (
     <main className="z-10">

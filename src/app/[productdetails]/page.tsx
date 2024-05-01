@@ -25,7 +25,6 @@ const getProductBySlug = async (slug: string) => {
 const page: React.FC<Props> = async ({ params }) => {
   const [product]: Product[] = await getProductBySlug(params.productdetails);
   const expiration = verificarExpiracao(product.expirationDate);
-  console.log(params.productdetails);
   return (
     <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
       <div>

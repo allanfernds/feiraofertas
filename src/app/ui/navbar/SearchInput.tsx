@@ -15,7 +15,6 @@ export const SearchInput = () => {
       params.delete('query');
     }
     replace(`${pathname}?${params.toString()}`);
-    console.log(term);
   }
   return (
     <div className="form-control">
