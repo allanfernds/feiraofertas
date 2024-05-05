@@ -27,7 +27,7 @@ const page: React.FC<Props> = async ({ params }) => {
   const expiration = verificarExpiracao(product.expirationDate);
   return (
     <div className="flex flex-col items-center justify-center py-8 pt-20 md:pt-40">
-      <div>
+
         <div
           className={clsx(
             'flex flex-col items-center justify-between gap-8 px-8 bg-white shadow-custom-shadow md:flex-row',
@@ -37,7 +37,7 @@ const page: React.FC<Props> = async ({ params }) => {
           <div className="md:flex-1">
             <figure className="mb-4 rounded-lg">
               <Image
-                className={'rounded-lg border p-2'}
+                className="relative rounded-lg border p-2"
                 src={product.imageURL}
                 alt={product.title}
                 priority={true}
@@ -47,11 +47,10 @@ const page: React.FC<Props> = async ({ params }) => {
               <ExpirationBadge expiration={expiration} />
             </figure>
           </div>
-          <div className="bg-white px-4 pt-4 md:flex-1">
+          <div className="bg-slate-50 px-4 pt-4 md:flex-1">
             <p className="mt-2 text-sm text-gray-600">{formatarData(product.createdAt)}</p>
             <h2 className="mb-2 text-2xl font-bold text-gray-800">{product.title}</h2>
-            <p className="mb-4 w-[360px] text-sm text-gray-600">{product.description}</p>
-
+            <p className="mb-4 text-sm text-gray-600">{product.description}</p> 
             <div className="mb-4 flex flex-col">
               <div className="flex items-center gap-20">
                 <div> 
@@ -66,7 +65,7 @@ const page: React.FC<Props> = async ({ params }) => {
                     <span className="mt-4 font-medium text-gray-700">
                       {product.discountPrice ? 'por apenas' : ''}
                     </span>
-                    <h2 className=" items-baseline gap-1">
+                    <div className=" items-baseline gap-1">
                       <span className="text-md mono font-medium">R$</span>
                       <span className="text-3xl font-semibold">
                         {parseFloat(product.discountPrice.toString()).toFixed(2)}
@@ -74,7 +73,7 @@ const page: React.FC<Props> = async ({ params }) => {
                       <span className="ml-2 text-sm text-green-500">
                         {calcularDescontoPorcentagem(product.price, product.discountPrice)}
                       </span>
-                    </h2>
+                    </div>
 
                     {product.installment > 0 ? (
                       <>
@@ -101,17 +100,15 @@ const page: React.FC<Props> = async ({ params }) => {
             </div>
 
             <div className="w-1/2">
-              <button className="w-full rounded-lg bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600">
+              <button className="w-48 rounded-sm bg-green-500 px-4 py-2 font-semibold text-white hover:bg-green-600">
                 {expiration ? 'EXPIRADO' : 'VER OFERTA'}
               </button>
             </div>
             <CompanyCard company={product.company} />
           </div>
         </div>
-      </div>
-      {/* <div className="container">
-        <CategoriesCarousel products={products} />
-      </div> */}
+
+
     </div>
   );
 };
