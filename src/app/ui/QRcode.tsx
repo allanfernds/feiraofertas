@@ -1,8 +1,8 @@
 import QRCode from 'react-qr-code';
 
-type Props = {
+interface Props {
   url: string;
-};
+}
 
 const CustomQRcode: React.FC<Props> = ({ url }) => {
   return (
